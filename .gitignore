@@ -11,6 +11,7 @@
 migrate_working_dir/
 lib/firebase_options.dart
 android/app/google-services.json
+lib/utils/constants/api_constants.dart
 ios/Runner/GoogleService-Info.plist
 ios/firebase_app_id_file.json
 macos/Runner/GoogleService-Info.plist
