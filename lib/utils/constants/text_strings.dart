@@ -1,8 +1,6 @@
 class TTexts{
   TTexts._();
   //Global Text
-
-
   //onBoarding Text
   static const String onBoardingTitle1="Choose your product";
   static const String onBoardingTitle2="Select Payment Methode";
