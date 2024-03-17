@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/features/authentication/screens/login/login.dart';
 import 'package:e_commerce_app/features/authentication/screens/onboarding/onboarding.dart';
 import 'package:e_commerce_app/utils/constants/colors.dart';
 import 'package:e_commerce_app/utils/theme/theme.dart';
@@ -14,6 +15,7 @@ themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
       theme: TAppTheme.lightTheme,
       home:const OnBoardingScreen(),
+      // home:const LoginScreen(),
     );
   }
 }
