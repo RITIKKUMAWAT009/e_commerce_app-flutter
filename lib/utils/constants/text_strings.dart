@@ -48,5 +48,5 @@ static const String loginSubTitle="Discover Limitless Choices and Unmatched Conv
   static const String emailNotReceivedMessage="Didn't get the email? Check your junk/spam or resend it";
   static const String yourAccountCreatedTitle="Your account successfully created!";
   static const String yourAccountCreatedSubTitle="Welcome to your Ultimate Shopping Destination : Your Account is Created, Unleash the Joy of Seamless Online Shopping!";
-static const String and="and";
+
 }
