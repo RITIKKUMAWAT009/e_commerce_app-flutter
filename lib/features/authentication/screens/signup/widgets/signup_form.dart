@@ -1,10 +1,11 @@
+import 'package:e_commerce_app/features/authentication/screens/signup/verify_email.dart';
 import 'package:e_commerce_app/features/authentication/screens/signup/widgets/term_and_conditions.dart';
 import 'package:e_commerce_app/utils/constants/text_strings.dart';
 import 'package:e_commerce_app/utils/helper/helper_function.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
-import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/sizes.dart';
 class SignUpForm extends StatelessWidget {
   const SignUpForm({
@@ -106,7 +107,7 @@ class SignUpForm extends StatelessWidget {
             ],
           ),
           const SizedBox(height: TSize.spaceBtwSections,),
-          SizedBox(width:double.infinity,child: ElevatedButton(onPressed: (){},child:const Text(TTexts.createAccount),),)
+          SizedBox(width:double.infinity,child: ElevatedButton(onPressed: ()=>Get.to(()=>const VerifyEmailScreen()),child:const Text(TTexts.createAccount),),)
         ],
       ),
     );

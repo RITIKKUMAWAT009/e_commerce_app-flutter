@@ -5,8 +5,9 @@ import 'package:e_commerce_app/utils/constants/sizes.dart';
 import 'package:e_commerce_app/utils/constants/text_strings.dart';
 import 'package:e_commerce_app/utils/helper/helper_function.dart';
 import 'package:flutter/material.dart';
-import '../../../../common/widgets_login_signup/form_divider.dart';
-import '../../../../common/widgets_login_signup/social_button.dart';
+
+import '../../../../common/widgets/login_signup/form_divider.dart';
+import '../../../../common/widgets/login_signup/social_button.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
