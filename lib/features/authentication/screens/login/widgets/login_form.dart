@@ -1,8 +1,8 @@
-
 import 'package:e_commerce_app/features/authentication/screens/signup/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/constants/text_strings.dart';
@@ -19,8 +19,7 @@ class LoginForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Form(
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-            vertical: TSize.spaceBtwSections),
+        padding: const EdgeInsets.symmetric(vertical: TSize.spaceBtwSections),
         child: Column(
           children: [
             // const SizedBox(height: TSize.spaceBtwInputFields,),
@@ -78,14 +77,23 @@ class LoginForm extends StatelessWidget {
             ),
 
             SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(style:isDark? const ButtonStyle(backgroundColor: MaterialStatePropertyAll(TColors.dark)):const ButtonStyle(backgroundColor: MaterialStatePropertyAll(TColors.light)
+              width: double.infinity,
+              child: ElevatedButton(
+                style: isDark
+                    ? const ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll(TColors.dark))
+                    : const ButtonStyle(
+                        backgroundColor:
+                            MaterialStatePropertyAll(TColors.light)),
+                onPressed: () => Get.to(
+                  () => const SignUpScreen(),
                 ),
-                  onPressed: () =>
-                   Get.to(()=>
-    const SignUpScreen(),),
-                  child:  Text(TTexts.createAccount, style: Theme.of(context).textTheme.bodyMedium,),
-                )),
+                child: Text(
+                  TTexts.createAccount,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+              ),
+            ),
           ],
         ),
       ),

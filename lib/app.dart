@@ -15,6 +15,7 @@ themeMode: ThemeMode.system,
       darkTheme: TAppTheme.darkTheme,
       debugShowCheckedModeBanner: false,
       theme: TAppTheme.lightTheme,
+
       // home: const SignUpScreen(),
       home:const OnBoardingScreen(),
       // home:const LoginScreen(),
