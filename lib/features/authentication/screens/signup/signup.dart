@@ -1,11 +1,11 @@
-import 'package:e_commerce_app/common/widgets_login_signup/form_divider.dart';
-import 'package:e_commerce_app/common/widgets_login_signup/social_button.dart';
-import 'package:e_commerce_app/utils/constants/colors.dart';
+import 'package:e_commerce_app/common/widgets/login_signup/form_divider.dart';
+import 'package:e_commerce_app/common/widgets/login_signup/social_button.dart';
 import 'package:e_commerce_app/utils/constants/sizes.dart';
 import 'package:e_commerce_app/utils/constants/text_strings.dart';
 import 'package:e_commerce_app/utils/helper/helper_function.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'widgets/signup_form.dart';
 
 class SignUpScreen extends StatelessWidget {
