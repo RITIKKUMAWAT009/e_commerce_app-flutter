@@ -14,6 +14,11 @@ themeMode: ThemeMode.system,
       darkTheme: TAppTheme.darkTheme,
       debugShowCheckedModeBanner: false,
       theme: TAppTheme.lightTheme,
+<<<<<<< HEAD
+=======
+
+      // home: const SignUpScreen(),
+>>>>>>> c86f2aa343a580379293dad770935c8b3372e708
       home:const OnBoardingScreen(),
       // home:const LoginScreen(),
     );

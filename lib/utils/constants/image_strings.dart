@@ -10,4 +10,6 @@ class TImages {
       'assets/images/onBoarding/delivery_home.gif';
   static const String onBoardingImage3 =
       'assets/images/onBoarding/delivery_animated.gif';
+  static const String email='assets/images/animations/email.gif';
+  static const String successAnim="assets/images/animations/success_animtion.gif";
 }
