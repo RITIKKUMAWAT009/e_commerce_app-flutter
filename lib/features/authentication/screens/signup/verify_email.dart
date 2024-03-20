@@ -36,19 +36,54 @@ class VerifyEmailScreen extends StatelessWidget {
               ),
 
               //title
-      Text(TTexts.confirmEmail,style: Theme.of(context).textTheme.headlineMedium,textAlign: TextAlign.center,),
-         const SizedBox(height: TSize.spaceBtwItems,),
-              Text('ritikkumawat123@gmail.com',style: Theme.of(context).textTheme.labelLarge,textAlign: TextAlign.center,),
-              const SizedBox(height: TSize.spaceBtwItems,),
-              Text(TTexts.confirmEmailSubTitle,style: Theme.of(context).textTheme.labelMedium,textAlign: TextAlign.center,),
-              const SizedBox(height: TSize.spaceBtwItems,),
+              Text(
+                TTexts.confirmEmail,
+                style: Theme.of(context).textTheme.headlineMedium,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(
+                height: TSize.spaceBtwItems,
+              ),
+              Text(
+                'ritikkumawat123@gmail.com',
+                style: Theme.of(context).textTheme.labelLarge,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(
+                height: TSize.spaceBtwItems,
+              ),
+              Text(
+                TTexts.confirmEmailSubTitle,
+                style: Theme.of(context).textTheme.labelMedium,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(
+                height: TSize.spaceBtwItems,
+              ),
 
               //button
-              SizedBox(width: double.infinity,
-              child: ElevatedButton(onPressed: ()=>Get.to(()=>SuccessScreen(onPressed: ()=>Get.to(LoginScreen(),),image: TImages.successAnim,title: TTexts.yourAccountCreatedTitle,subTitle: TTexts.yourAccountCreatedSubTitle,)),child:const Text("Continue"),),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () => Get.to(() => SuccessScreen(
+                        onPressed: () => Get.to(() => const LoginScreen()),
+                        image: TImages.successAnim,
+                        title: TTexts.yourAccountCreatedTitle,
+                        subTitle: TTexts.yourAccountCreatedSubTitle,
+                      )),
+                  child: const Text("Continue"),
+                ),
               ),
-              const SizedBox(height: TSize.spaceBtwItems,),
-              SizedBox(width: double.infinity,child: TextButton(onPressed: (){},child:const Text(TTexts.resendEmail),),)
+              const SizedBox(
+                height: TSize.spaceBtwItems,
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: TextButton(
+                  onPressed: () {},
+                  child: const Text(TTexts.resendEmail),
+                ),
+              )
             ],
           ),
         ),
