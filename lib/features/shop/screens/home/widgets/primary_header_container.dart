@@ -1,6 +1,6 @@
 
-import 'package:flutter/material.dart';
 import 'package:e_commerce_app/common/widgets/custom_shape/container/cured_edge_container_widget.dart';
+import 'package:flutter/material.dart';
 
 import '../../../../../common/widgets/custom_shape/container/circular_container.dart';
 import '../../../../../utils/constants/colors.dart';

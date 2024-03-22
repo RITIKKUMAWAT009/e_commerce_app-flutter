@@ -45,6 +45,7 @@ dependencies:
   get_storage: ^2.1.1
   smooth_page_indicator: ^1.1.0
   iconsax: ^0.0.8
+  carousel_slider: ^4.2.1
 
 
 dev_dependencies:
@@ -72,9 +73,17 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/logos/
+    - assets/icons/
+    - assets/icons/brands/
+    - assets/icons/categories/
+    - assets/icons/payment_methods/
     - assets/images/
-    - assets/images/onBoarding/
     - assets/images/animations/
+    - assets/images/banners/
+    - assets/images/content/
+    - assets/images/on_boarding_images/
+    - assets/images/products/
+    - assets/images/reviews/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
