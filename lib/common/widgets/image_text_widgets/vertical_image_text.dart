@@ -1,7 +1,7 @@
-import 'package:e_commerce_app/utils/constants/sizes.dart';
-import 'package:flutter/material.dart';
-import 'package:e_commerce_app/utils/helper/helper_function.dart';
 import 'package:e_commerce_app/utils/constants/colors.dart';
+import 'package:e_commerce_app/utils/constants/sizes.dart';
+import 'package:e_commerce_app/utils/helper/helper_function.dart';
+import 'package:flutter/material.dart';
 
 class VerticalImageText extends StatelessWidget {
   const VerticalImageText({
@@ -30,7 +30,7 @@ class VerticalImageText extends StatelessWidget {
               child: Image(
                 image: AssetImage(image),
                 fit: BoxFit.cover,
-                // color: (THelperFunction.isDarkMode(context) ?TColors.white :TColors.black),
+                color: (THelperFunction.isDarkMode(context) ?TColors.white :TColors.black),
               ),
             ),
           ),
