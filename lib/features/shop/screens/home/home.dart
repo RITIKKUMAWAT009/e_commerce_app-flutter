@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/common/widgets/custom_shape/container/search_container.dart';
+import 'package:e_commerce_app/common/widgets/products/product_card/product_card_vertical.dart';
 import 'package:e_commerce_app/common/widgets/text_widget/section_heading.dart';
 import 'package:e_commerce_app/features/shop/screens/home/widgets/hom_appbar.dart';
 import 'package:e_commerce_app/features/shop/screens/home/widgets/primary_header_container.dart';
@@ -74,6 +75,7 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
+            ProductVerticalCard(),
           ],
         ),
       ),
