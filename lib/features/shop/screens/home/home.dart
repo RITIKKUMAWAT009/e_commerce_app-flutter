@@ -17,11 +17,11 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
-            PrimaryHeaderContainer(
+            const PrimaryHeaderContainer(
               child: Column(
                 children: [
                   //appbar
@@ -61,21 +61,34 @@ class HomeScreen extends StatelessWidget {
             ),
             //Body
             Padding(
-              padding: EdgeInsets.all(TSize.defaultSpace),
-              child: PromoSlider(
-                banners: [
-                  TImages.banner1,
-                  TImages.banner2,
-                  TImages.banner3,
-                  TImages.banner4,
-                  TImages.banner5,
-                  TImages.banner6,
-                  TImages.banner7,
-                  TImages.banner8,
+              padding: const EdgeInsets.all(TSize.defaultSpace),
+              child: Column(
+                children: [
+                  const PromoSlider(
+                    banners: [
+                      TImages.productImage1,
+                      TImages.productImage2,
+                      TImages.productImage3,
+                      TImages.productImage4,
+                      TImages.productImage5,
+                      TImages.productImage6,
+                    ],
+                  ),
+                  const SizedBox(
+                    height: TSize.spaceBtwSections,
+                  ),
+                  GridView.builder(
+                    itemCount: 40,
+                      physics:const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,crossAxisSpacing: TSize.gridViewSpacing,mainAxisSpacing: TSize.gridViewSpacing,mainAxisExtent: 288),
+                      itemBuilder:(_,index)=>const ProductVerticalCard(),
+                  ),
+
                 ],
               ),
             ),
-            ProductVerticalCard(),
           ],
         ),
       ),
