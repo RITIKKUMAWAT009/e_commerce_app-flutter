@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 class CircularIcon extends StatelessWidget {
   const CircularIcon({
-    super.key, this.iconColor, this.backgroundColor, required this.onPressed, this.height, this.width, required this.icon,
+    super.key, this.iconColor,required this.backgroundColor, required this.onPressed, this.height, this.width, required this.icon,
   });
 
   final Color? iconColor;
-  final Color? backgroundColor;
+  final bool backgroundColor;
   final VoidCallback onPressed ;
   final IconData icon;
   final double? height;
@@ -20,10 +20,10 @@ class CircularIcon extends StatelessWidget {
       height: height,
       width: width,
       decoration: BoxDecoration(
-        color:backgroundColor ?? (isDarkMode? TColors.black.withOpacity(0.9):TColors.white.withOpacity(0.9)),
+        color:backgroundColor?isDarkMode? TColors.white.withOpacity(0.3):TColors.white.withOpacity(0.9):null,
         borderRadius: BorderRadius.circular(100),
       ),
-      child: IconButton(onPressed: (){},icon: Icon(icon),color:iconColor ,),
+      child: Center(child: IconButton(onPressed: (){},icon: Icon(icon),color:iconColor ,)),
     );
   }
 }
