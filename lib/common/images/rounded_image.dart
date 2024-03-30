@@ -51,7 +51,7 @@ class RoundedImage extends StatelessWidget {
                   ? NetworkImage(imageUrl)
                   : AssetImage(imageUrl) as ImageProvider,
               fit: fit,
-            )),
+            ),),
       ),
     );
   }
