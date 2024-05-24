@@ -7,6 +7,7 @@ import 'package:e_commerce_app/utils/constants/colors.dart';
 import 'package:e_commerce_app/utils/constants/image_strings.dart';
 import 'package:e_commerce_app/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:iconsax/iconsax.dart';
 
 import 'widgets/home_category.dart';
@@ -33,6 +34,7 @@ class HomeScreen extends StatelessWidget {
                   SearchContainer(
                     text: 'Search in Store',
                     icon: Iconsax.search_normal,
+                    padding: EdgeInsets.symmetric(horizontal: TSize.defaultSpace),
                   )
                   //categories
                   ,
@@ -45,7 +47,7 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         SectionHeading(
                           textColor: TColors.white,
-                          showActionButton: false,
+                          showActionButton: true,
                           buttonText: 'View all',
                           headingText: 'Popular Category',
                         ),
@@ -55,7 +57,8 @@ class HomeScreen extends StatelessWidget {
                         HomeCategory()
                       ],
                     ),
-                  )
+                  ),
+                  SizedBox(height: TSize.spaceBtwSections,)
                 ],
               ),
             ),
@@ -78,7 +81,7 @@ class HomeScreen extends StatelessWidget {
                     height: TSize.spaceBtwSections,
                   ),
                   GridView.builder(
-                    itemCount: 40,
+                    itemCount: 18,
                       physics:const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

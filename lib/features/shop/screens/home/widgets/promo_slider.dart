@@ -37,6 +37,7 @@ final List<String> banners;
                 width: 20,
                 height: 4,
                 backgroundColor:controller.carousalCurrentIndex.value==i?TColors.primary:TColors.grey,
+                inDarkModeBackgroundColor:controller.carousalCurrentIndex.value==i?Colors.blueAccent:TColors.grey,
               ),
             ],
           ),
