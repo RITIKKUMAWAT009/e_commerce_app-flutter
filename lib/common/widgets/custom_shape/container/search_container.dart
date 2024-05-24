@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -7,19 +8,20 @@ import '../../../../utils/device/device_utility.dart';
 import '../../../../utils/helper/helper_function.dart';
 class SearchContainer extends StatelessWidget {
   const SearchContainer({
-    super.key, required this.text, this.icon,  this.showBackground=true,  this.showBorder=true
-    ,
+    super.key, required this.text, this.icon,  this.showBackground=true,  this.showBorder=true,  this.padding=EdgeInsets.zero,
+
   });
 
   final String text;
   final IconData? icon;
   final bool showBackground;
+  final EdgeInsetsGeometry padding;
   final bool showBorder;
   @override
   Widget build(BuildContext context) {
     final isDark=THelperFunction.isDarkMode(context);
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: TSize.defaultSpace),
+      padding: padding,
       child: Container(
         width: TDeviceUtils.getScreenWidth(context),
         padding: const EdgeInsets.all(TSize.md),

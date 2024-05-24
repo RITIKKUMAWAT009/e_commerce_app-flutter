@@ -3,9 +3,9 @@ import 'package:flutter/cupertino.dart';
 
 class ShadowStyle{
   static final verticalBoxShadow=BoxShadow(
-    color: TColors.grey.withOpacity(0.8),
-    blurRadius: 10,
-    spreadRadius:4,
+    color: TColors.primary.withOpacity(0.3),
+    blurRadius: 5,
+    spreadRadius:2,
     offset:const Offset(0,2),
   );
   static final horizontalBoxShadow=BoxShadow(
