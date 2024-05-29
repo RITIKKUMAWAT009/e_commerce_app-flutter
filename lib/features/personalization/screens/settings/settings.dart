@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../../common/widgets/listtiles/user_profile_tile.dart';
+import '../../../../data/repositories/authentication/authentication_repository.dart';
 import '../profile/profile_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -132,7 +133,7 @@ class SettingsScreen extends StatelessWidget {
                     trailing: Switch(value: false,onChanged: (value){},),)
                ,const SizedBox(height: TSize.spaceBtwSections,),
                   SizedBox(width: double.infinity,
-                  child: OutlinedButton(onPressed: (){},child: const Text('Logout'),),),
+                  child: OutlinedButton(onPressed: ()=>AuthenticationRepository.instance.logout(),child: const Text('Logout'),),),
                   const SizedBox(height: TSize.spaceBtwSections,)
                 ],
               ),
