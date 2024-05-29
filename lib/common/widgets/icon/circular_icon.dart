@@ -20,7 +20,7 @@ class CircularIcon extends StatelessWidget {
       height: height,
       width: width,
       decoration: BoxDecoration(
-        color:backgroundColor?isDarkMode? TColors.white.withOpacity(0.3):TColors.white.withOpacity(0.9):null,
+        color:backgroundColor?isDarkMode? TColors.light.withOpacity(0.3):TColors.darkerGrey.withOpacity(0.8):null,
         borderRadius: BorderRadius.circular(100),
       ),
       child: Center(child: IconButton(onPressed: (){},icon: Icon(icon),color:iconColor ,)),

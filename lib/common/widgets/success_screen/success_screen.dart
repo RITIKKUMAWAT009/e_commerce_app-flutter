@@ -2,6 +2,7 @@ import 'package:e_commerce_app/common/styles/spacing_style.dart';
 import 'package:e_commerce_app/utils/constants/sizes.dart';
 import 'package:e_commerce_app/utils/helper/helper_function.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class SuccessScreen extends StatelessWidget {
   const SuccessScreen({required this.onPressed,required this.image,required this.title,required this.subTitle,super.key});
@@ -16,9 +17,9 @@ class SuccessScreen extends StatelessWidget {
           padding: TSpacingStyle.paddingWithAppBarHeight * 2,
           child: Column(
             children: [
-              Image(
+              Lottie.asset(image,
                   width: THelperFunction.screenWidth() * 0.8,
-                  image:AssetImage(image)),
+                  ),
               const SizedBox(
                 height: TSize.spaceBtwSections,
               ),
@@ -31,11 +32,6 @@ class SuccessScreen extends StatelessWidget {
               ),
               const SizedBox(
                 height: TSize.spaceBtwItems,
-              ),
-              Text(
-                'ritikkumawat123@gmail.com',
-                style: Theme.of(context).textTheme.labelLarge,
-                textAlign: TextAlign.center,
               ),
               const SizedBox(
                 height: TSize.spaceBtwItems,

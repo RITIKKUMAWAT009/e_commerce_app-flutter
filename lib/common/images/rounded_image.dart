@@ -37,7 +37,8 @@ class RoundedImage extends StatelessWidget {
         margin:const EdgeInsets.only(right: 5),
         width: width,
         height: height,
-        decoration: BoxDecoration(
+        padding: padding,
+        decoration: BoxDecoration(border: border,
           color: backgroundColor,
             borderRadius: applyImageRadius
                 ? BorderRadius.circular(borderRadius)

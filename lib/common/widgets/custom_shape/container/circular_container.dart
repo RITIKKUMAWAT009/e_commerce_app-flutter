@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 class CircularContainer extends StatelessWidget {
   const CircularContainer(
       {super.key,
-      this.width = 400,
-      this.height = 400,
-      this.radius = 400,
+      this.width ,
+      this.height ,
+      this.radius=1,
       this.padding = 0,
       this.margin,
       this.backgroundColor = TColors.white,
@@ -37,7 +37,7 @@ class CircularContainer extends StatelessWidget {
         borderRadius: BorderRadius.circular(radius),
         color: isDarkMode ? inDarkModeBackgroundColor : backgroundColor,
         border: showBorder
-            ? Border.all(color: TColors.white)
+            ? Border.all(color: TColors.grey)
             : Border.all(color: Colors.transparent),
       ),
       child: child,

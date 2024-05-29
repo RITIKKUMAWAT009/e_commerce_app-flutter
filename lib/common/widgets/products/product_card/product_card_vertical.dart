@@ -2,11 +2,13 @@ import 'package:e_commerce_app/common/images/rounded_image.dart';
 import 'package:e_commerce_app/common/widgets/custom_shape/container/circular_container.dart';
 import 'package:e_commerce_app/common/widgets/icon/circular_icon.dart';
 import 'package:e_commerce_app/common/widgets/text_widget/product_title_text.dart';
+import 'package:e_commerce_app/features/shop/screens/product_details/product_detail.dart';
 import 'package:e_commerce_app/utils/constants/colors.dart';
 import 'package:e_commerce_app/utils/constants/image_strings.dart';
 import 'package:e_commerce_app/utils/constants/sizes.dart';
 import 'package:e_commerce_app/utils/helper/helper_function.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../styles/shadow.dart';
@@ -19,7 +21,7 @@ class ProductVerticalCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool isDarkMode = THelperFunction.isDarkMode(context);
     return GestureDetector(
-      onTap: (){},
+      onTap: ()=>Get.to(()=>ProductDetails()),
       child: Container(
         width: 180,
         decoration: BoxDecoration(
