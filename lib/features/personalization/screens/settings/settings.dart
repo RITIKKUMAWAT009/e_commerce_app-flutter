@@ -1,16 +1,17 @@
 import 'package:e_commerce_app/common/widgets/appbar/appbar.dart';
 import 'package:e_commerce_app/common/widgets/listtiles/settings_menu_tile.dart';
 import 'package:e_commerce_app/common/widgets/text_widget/section_heading.dart';
+import 'package:e_commerce_app/data/repositories/authentication/authentication_repository.dart';
 import 'package:e_commerce_app/features/personalization/screens/address/address.dart';
 import 'package:e_commerce_app/features/shop/screens/home/widgets/primary_header_container.dart';
 import 'package:e_commerce_app/utils/constants/colors.dart';
 import 'package:e_commerce_app/utils/constants/sizes.dart';
+import 'package:e_commerce_app/utils/helper/helper_function.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../../common/widgets/listtiles/user_profile_tile.dart';
-import '../../../../data/repositories/authentication/authentication_repository.dart';
 import '../profile/profile_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -18,6 +19,7 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dark=THelperFunction.isDarkMode(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -35,7 +37,11 @@ class SettingsScreen extends StatelessWidget {
                           .apply(color: TColors.white),
                     ),
                   ),
-                   UserProfileTile(onTap: (){Get.to(()=>const ProfileScreen());},),
+                  UserProfileTile(
+                    onTap: () {
+                      Get.to(() => const ProfileScreen());
+                    },
+                  ),
                   const SizedBox(
                     height: TSize.spaceBtwSections,
                   ),
@@ -58,7 +64,7 @@ class SettingsScreen extends StatelessWidget {
                     icon: Iconsax.safe_home,
                     title: "My Addresses",
                     subTitle: "Set shopping delivery address",
-                    onTap: ()=>Get.to(()=>UserAddressScreen()),
+                    onTap: () => Get.to(() => UserAddressScreen()),
                   ),
                   SettingsMenuTile(
                     icon: Iconsax.shopping_cart,
@@ -129,12 +135,55 @@ class SettingsScreen extends StatelessWidget {
                       onChanged: (value) {},
                     ),
                   ),
-                  SettingsMenuTile(icon: Iconsax.location, title: "HD Image Quality", subTitle: "Set image quality to be seen",
-                    trailing: Switch(value: false,onChanged: (value){},),)
-               ,const SizedBox(height: TSize.spaceBtwSections,),
-                  SizedBox(width: double.infinity,
-                  child: OutlinedButton(onPressed: ()=>AuthenticationRepository.instance.logout(),child: const Text('Logout'),),),
-                  const SizedBox(height: TSize.spaceBtwSections,)
+                  SettingsMenuTile(
+                    icon: Iconsax.location,
+                    title: "HD Image Quality",
+                    subTitle: "Set image quality to be seen",
+                    trailing: Switch(
+                      value: false,
+                      onChanged: (value) {},
+                    ),
+                  ),
+                  const SizedBox(
+                    height: TSize.spaceBtwSections,
+                  ),
+                  SizedBox(
+                    width: double.infinity,
+                    child: OutlinedButton(
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              backgroundColor:dark? Colors.black:Colors.white,elevation: 5,icon: Icon(Iconsax.warning_2),
+                              title: Text('Logout',style: TextStyle(color: dark?Colors.white:Colors.black),),
+                              content:
+                                  Text('Are you sure to logout your account',style: Theme.of(context).textTheme.titleLarge,),
+                              actions: [
+                                ElevatedButton(
+                                  onPressed: () {
+                                    Get.back();
+                                  },
+                                  child: Text('Cancle',style: Theme.of(context).textTheme.titleLarge,),
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: TColors.grey),
+                                ),
+                                ElevatedButton(
+                                    onPressed: () {
+                                      AuthenticationRepository.instance.logout();
+                                    }, child: Text('Ok',style: Theme.of(context).textTheme.titleLarge,))
+                              ],
+                              actionsAlignment: MainAxisAlignment.spaceAround,
+                            );
+                          },
+                        );
+                      },
+                      child: const Text('Logout'),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: TSize.spaceBtwSections,
+                  )
                 ],
               ),
             )

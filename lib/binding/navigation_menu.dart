@@ -1,54 +1,97 @@
+import 'package:animated_notch_bottom_bar/animated_notch_bottom_bar/animated_notch_bottom_bar.dart';
 import 'package:e_commerce_app/features/personalization/screens/settings/settings.dart';
 import 'package:e_commerce_app/features/shop/screens/home/home.dart';
 import 'package:e_commerce_app/features/shop/screens/store/store.dart';
 import 'package:e_commerce_app/features/shop/screens/wishlist/wishlist.dart';
-import 'package:e_commerce_app/utils/constants/colors.dart';
 import 'package:e_commerce_app/utils/helper/helper_function.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../utils/constants/colors.dart';
+
 class NavigationExample extends StatelessWidget {
   const NavigationExample({super.key});
+
   @override
   Widget build(BuildContext context) {
-    final controller=Get.put(NavigationController());
-    final isDark=THelperFunction.isDarkMode(context);
+    final controller = Get.put(NavigationController());
+    final isDark = THelperFunction.isDarkMode(context);
     return Scaffold(
       bottomNavigationBar: Obx(
-        ()=> NavigationBar(
-          indicatorColor: isDark? TColors.white.withOpacity(.3):TColors.black.withOpacity(0.3),
-          backgroundColor: isDark?TColors.black:TColors.white,
-          height: 80,
-          elevation: 0,
-          selectedIndex: controller.selectedIndex.value,
-          onDestinationSelected: (index)=> controller.selectedIndex.value=index,
-          destinations: const <Widget>[
-            NavigationDestination(
-              icon: Icon(Iconsax.home),
-              label: 'Home',
+        () => AnimatedNotchBottomBar(
+          shadowElevation: 5,
+          durationInMilliSeconds: 10,
+          showShadow: true,
+          showBlurBottomBar: true,
+          showTopRadius: true,
+          textOverflow: TextOverflow.ellipsis,
+          kBottomRadius: 5,
+          circleMargin: 1,
+          blurOpacity: 1,
+          kIconSize: 20,
+          maxLine: 1,
+          bottomBarHeight: 34,
+          notchBottomBarController:
+              NotchBottomBarController(index: controller.selectedIndex.value),
+          notchGradient: RadialGradient(colors: [
+            Colors.blue.shade100,
+            Colors.blue.shade200,
+            Colors.blue.shade400,
+            Colors.blue.shade600,
+            TColors.primary,
+          ]),
+          color: Colors.blueAccent.shade100,
+          elevation: 10,
+          textAlign: TextAlign.center,
+          onTap: (value) => controller.selectedIndex.value = value,
+          bottomBarItems: const [
+            BottomBarItem(
+              inActiveItem: Icon(Iconsax.home),
+              activeItem: Icon(Iconsax.home),
+              itemLabelWidget: Text(
+                'Home',
+                style: TextStyle(color: Colors.black),
+              ),
             ),
-            NavigationDestination(
-              icon: Icon(Icons.storefront_outlined),
-              label: 'Store',
+            BottomBarItem(
+              inActiveItem: Icon(Icons.storefront_outlined),
+              activeItem: Icon(Icons.storefront_outlined),
+              itemLabelWidget: Text(
+                'Store',
+                style: TextStyle(color: Colors.black),
+              ),
             ),
-            NavigationDestination(
-              icon: Icon(Iconsax.heart),
-              label: 'Wishlist',
+            BottomBarItem(
+              inActiveItem: Icon(Iconsax.heart),
+              activeItem: Icon(Iconsax.heart),
+              itemLabelWidget: Text(
+                'Wishlist',
+                style: TextStyle(color: Colors.black),
+              ),
             ),
-            NavigationDestination(
-              icon: Icon(Iconsax.user),
-              label: 'Profile',
+            BottomBarItem(
+              inActiveItem: Icon(Iconsax.user),
+              activeItem: Icon(Iconsax.user),
+              itemLabelWidget: Text(
+                'Profile',
+                style: TextStyle(color: Colors.black),
+              ),
             ),
           ],
         ),
-      ),body: Obx(()=> controller.screen[controller.selectedIndex.value]),
-
+      ),
+      body: Obx(() => controller.screen[controller.selectedIndex.value]),
     );
   }
 }
 
-class NavigationController extends GetxController{
-  final Rx<int> selectedIndex=0.obs;
-  final screen=[const HomeScreen(),const StoreScreen(),const FavouriteScreen(),SettingsScreen()];
+class NavigationController extends GetxController {
+  final Rx<int> selectedIndex = 0.obs;
+  final screen = [
+    const HomeScreen(),
+    const StoreScreen(),
+    const FavouriteScreen(),
+    const SettingsScreen()
+  ];
 }

@@ -41,7 +41,7 @@ class VerifyEmailController extends GetxController {
             onPressed: () => AuthenticationRepository.instance.screenRedirect(),
             image: 'assets/images/animations/72462-check-register.json',
             title: TTexts.yourAccountCreatedTitle,
-            subTitle: TTexts.yourAccountCreatedSubTitle));
+            subTitle: TTexts.yourAccountCreatedSubTitle),transition: Transition.zoom,duration: Duration(seconds: 1));
       }
     });
   }
@@ -55,7 +55,7 @@ class VerifyEmailController extends GetxController {
           onPressed: AuthenticationRepository.instance.screenRedirect(),
           image: 'assets/images/animations/72462-check-register.json',
           title: TTexts.yourAccountCreatedTitle,
-          subTitle: TTexts.yourAccountCreatedSubTitle));
+          subTitle: TTexts.yourAccountCreatedSubTitle),transition: Transition.zoom,duration: Duration(seconds: 1));
     }
   }
 }

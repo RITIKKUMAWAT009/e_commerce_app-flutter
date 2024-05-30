@@ -35,17 +35,17 @@ class AuthenticationRepository extends GetxController {
     final user = _auth.currentUser;
     if (user != null) {
       if (user.emailVerified) {
-        Get.offAll(() => const NavigationExample());
+        Get.offAll(() => const NavigationExample(),transition: Transition.zoom,duration: Duration(seconds: 1));
       } else {
         Get.offAll(() => VerifyEmailScreen(
               email: _auth.currentUser?.email,
-            ));
+            ),transition: Transition.zoom,duration: Duration(seconds: 1));
       }
     } else {
       deviceStorage.writeIfNull('isFirstTime', true);
       deviceStorage.read('isFirstTime') != true
-          ? Get.offAll(() => const LoginScreen())
-          : Get.offAll(() => const OnBoardingScreen());
+          ? Get.offAll(() => const LoginScreen(),transition: Transition.zoom,duration: Duration(seconds: 1))
+          : Get.offAll(() => const OnBoardingScreen(),transition: Transition.zoom,duration: Duration(seconds: 1));
     }
   }
 
@@ -131,6 +131,23 @@ class AuthenticationRepository extends GetxController {
       throw 'Something went wrong';
     }
   }
+//send reset password email link
+  Future<void>sendResetPasswordEmail(String email)async{
+    try{
+      await _auth.sendPasswordResetEmail(email: email);
+    }on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (e) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong';
+    }
+  }
+
 
   //logout user
   Future<void> logout() async {
@@ -141,7 +158,7 @@ class AuthenticationRepository extends GetxController {
         Duration(seconds: 4),
         () async {
           await FirebaseAuth.instance.signOut();
-          Get.offAll(() => const LoginScreen());
+          Get.offAll(() => const LoginScreen(),transition: Transition.zoom,duration: Duration(seconds: 1));
         },
       );
     } on FirebaseAuthException catch (e) {
