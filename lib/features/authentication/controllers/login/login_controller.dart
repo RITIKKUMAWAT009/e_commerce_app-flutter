@@ -61,6 +61,7 @@ Future<void> emailAndPasswordSignIn()async{
   }
 }
 
+
 Future<void> googleSignIn()async{
     try{
       FullScreenLoader.openLoadingDialog('Logging in...', 'assets/images/animations/141594-animation-of-docer.json');

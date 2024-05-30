@@ -78,7 +78,7 @@ class LoginForm extends StatelessWidget {
                   ],
                 ),
                 TextButton(
-                  onPressed: () => Get.to(() => const ForgotPassword()),
+                  onPressed: () => Get.to(() => const ForgotPassword(),transition: Transition.zoom,duration: Duration(seconds: 1)),
                   child: const Text(TTexts.forgotPassword),
                 ),
               ],
@@ -107,7 +107,7 @@ class LoginForm extends StatelessWidget {
                       : const ButtonStyle(
                           backgroundColor:
                               MaterialStatePropertyAll(TColors.light)),
-                  onPressed: () => Get.to(() => const SignUpScreen()),
+                  onPressed: () => Get.to(() => const SignUpScreen(),transition: Transition.zoom,duration: Duration(seconds: 1)),
                   child: Text(
                     TTexts.createAccount,
                     style: Theme.of(context).textTheme.bodyMedium,

@@ -21,7 +21,7 @@ class ProductVerticalCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool isDarkMode = THelperFunction.isDarkMode(context);
     return GestureDetector(
-      onTap: ()=>Get.to(()=>ProductDetails()),
+      onTap: ()=>Get.to(()=>ProductDetails(),transition: Transition.zoom,duration: Duration(seconds: 1)),
       child: Container(
         width: 180,
         decoration: BoxDecoration(

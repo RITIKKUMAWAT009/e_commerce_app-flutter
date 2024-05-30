@@ -74,7 +74,7 @@ Loaders.successSnackBar(title: 'Congratulations',message: 'Your account has been
       print('go to veficationscrren');
       FullScreenLoader.stopLoading();
 
-    Get.to(()=> VerifyEmailScreen(email: email.text.trim(),));
+    Get.to(()=> VerifyEmailScreen(email: email.text.trim(),),transition: Transition.zoom,duration: Duration(seconds: 1));
     } catch (e) {
       //show some generic errors to the user
       FullScreenLoader.stopLoading();
