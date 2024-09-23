@@ -74,7 +74,7 @@ Future<void> googleSignIn()async{
       }
       final userCredential=await AuthenticationRepository.instance.loginWithGoogle();
       //save data to local storage
-     await userController.instance.saveUserDataToStorage(userCredential);
+     await userController.saveUserDataToStorage(userCredential);
 
      //remove loader
       FullScreenLoader.stopLoading();

@@ -52,7 +52,7 @@ class LoginForm extends StatelessWidget {
                     labelStyle: Theme.of(context).textTheme.bodyMedium,
                     prefixIcon: const Icon(Iconsax.password_check),
                     suffixIcon: IconButton(
-                      icon: controller.hidePassword.value?Icon(Iconsax.eye_slash):Icon(Icons.remove_red_eye_outlined),
+                      icon: controller.hidePassword.value?const Icon(Iconsax.eye_slash):const Icon(Icons.remove_red_eye_outlined),
                       onPressed: () =>
                           controller.hidePassword.value =
                           !controller.hidePassword.value,
@@ -78,7 +78,7 @@ class LoginForm extends StatelessWidget {
                   ],
                 ),
                 TextButton(
-                  onPressed: () => Get.to(() => const ForgotPassword(),transition: Transition.zoom,duration: Duration(seconds: 1)),
+                  onPressed: () => Get.to(() => const ForgotPassword(),transition: Transition.zoom,duration: const Duration(milliseconds: 600)),
                   child: const Text(TTexts.forgotPassword),
                 ),
               ],
@@ -107,7 +107,7 @@ class LoginForm extends StatelessWidget {
                       : const ButtonStyle(
                           backgroundColor:
                               MaterialStatePropertyAll(TColors.light)),
-                  onPressed: () => Get.to(() => const SignUpScreen(),transition: Transition.zoom,duration: Duration(seconds: 1)),
+                  onPressed: () => Get.to(() => const SignUpScreen(),transition: Transition.zoom,duration: const Duration(milliseconds: 600)),
                   child: Text(
                     TTexts.createAccount,
                     style: Theme.of(context).textTheme.bodyMedium,

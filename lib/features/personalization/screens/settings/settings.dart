@@ -3,6 +3,7 @@ import 'package:e_commerce_app/common/widgets/listtiles/settings_menu_tile.dart'
 import 'package:e_commerce_app/common/widgets/text_widget/section_heading.dart';
 import 'package:e_commerce_app/data/repositories/authentication/authentication_repository.dart';
 import 'package:e_commerce_app/features/personalization/screens/address/address.dart';
+import 'package:e_commerce_app/features/shop/controllers/category_controller.dart';
 import 'package:e_commerce_app/features/shop/screens/home/widgets/primary_header_container.dart';
 import 'package:e_commerce_app/utils/constants/colors.dart';
 import 'package:e_commerce_app/utils/constants/sizes.dart';
@@ -20,6 +21,7 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dark=THelperFunction.isDarkMode(context);
+    final uploadData=Get.put(CategoryController());
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -39,7 +41,7 @@ class SettingsScreen extends StatelessWidget {
                   ),
                   UserProfileTile(
                     onTap: () {
-                      Get.to(() => const ProfileScreen());
+                      Get.to(() => const ProfileScreen(),transition: Transition.zoom,duration: const Duration(milliseconds: 600));
                     },
                   ),
                   const SizedBox(
@@ -64,7 +66,7 @@ class SettingsScreen extends StatelessWidget {
                     icon: Iconsax.safe_home,
                     title: "My Addresses",
                     subTitle: "Set shopping delivery address",
-                    onTap: () => Get.to(() => UserAddressScreen()),
+                    onTap: () => Get.to(() =>const UserAddressScreen(),transition: Transition.zoom,duration:const Duration(milliseconds:  600)),
                   ),
                   SettingsMenuTile(
                     icon: Iconsax.shopping_cart,
@@ -113,7 +115,7 @@ class SettingsScreen extends StatelessWidget {
                   const SizedBox(
                     height: TSize.spaceBtwItems,
                   ),
-                  const SettingsMenuTile(
+                   SettingsMenuTile(onTap: () =>uploadData.uploadData(),
                       icon: Iconsax.document_upload,
                       title: "Load Data",
                       subTitle: "Upload Data to your Cloud Firebase"),
@@ -155,7 +157,7 @@ class SettingsScreen extends StatelessWidget {
                           context: context,
                           builder: (context) {
                             return AlertDialog(
-                              backgroundColor:dark? Colors.black:Colors.white,elevation: 5,icon: Icon(Iconsax.warning_2),
+                              backgroundColor:dark? Colors.black:Colors.white,elevation: 5,icon: const Icon(Iconsax.warning_2),
                               title: Text('Logout',style: TextStyle(color: dark?Colors.white:Colors.black),),
                               content:
                                   Text('Are you sure to logout your account',style: Theme.of(context).textTheme.titleLarge,),
@@ -164,9 +166,9 @@ class SettingsScreen extends StatelessWidget {
                                   onPressed: () {
                                     Get.back();
                                   },
-                                  child: Text('Cancle',style: Theme.of(context).textTheme.titleLarge,),
                                   style: ElevatedButton.styleFrom(
                                       backgroundColor: TColors.grey),
+                                  child: Text('Cancel',style: Theme.of(context).textTheme.titleLarge,),
                                 ),
                                 ElevatedButton(
                                     onPressed: () {

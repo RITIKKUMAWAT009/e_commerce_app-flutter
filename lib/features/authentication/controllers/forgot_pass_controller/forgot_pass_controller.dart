@@ -31,7 +31,7 @@ sendResetPasswordEmail()async{
     FullScreenLoader.stopLoading();
     //show success message
     Loaders.successSnackBar(title: 'Email Sent',message: 'Email Link Sent to Reset your Password'.tr);
-    Get.to(()=>ResetPassword(email: emailController.text.trim(),),transition: Transition.zoom,duration: Duration(seconds: 1));
+    Get.to(()=>ResetPassword(email: emailController.text.trim(),),transition: Transition.zoom,duration: const Duration(milliseconds: 600));
   }catch(e){
 FullScreenLoader.stopLoading();
 Loaders.errorSnackBar(title: 'Oh Snap',message: e.toString());

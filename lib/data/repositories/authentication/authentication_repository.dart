@@ -1,6 +1,6 @@
 import 'dart:async';
-
 import 'package:e_commerce_app/binding/navigation_menu.dart';
+import 'package:e_commerce_app/data/repositories/user/user_repository.dart';
 import 'package:e_commerce_app/features/authentication/screens/login/login.dart';
 import 'package:e_commerce_app/features/authentication/screens/onboarding/onboarding.dart';
 import 'package:e_commerce_app/features/authentication/screens/signup/verify_email.dart';
@@ -22,7 +22,7 @@ class AuthenticationRepository extends GetxController {
   //variables
   final deviceStorage = GetStorage();
   final _auth = FirebaseAuth.instance;
-
+ User? get authUser => _auth.currentUser;
 //called from main.dart when app launch
   @override
   void onReady() {
@@ -35,23 +35,23 @@ class AuthenticationRepository extends GetxController {
     final user = _auth.currentUser;
     if (user != null) {
       if (user.emailVerified) {
-        Get.offAll(() => const NavigationExample(),transition: Transition.zoom,duration: Duration(seconds: 1));
+        Get.offAll(() => const NavigationExample(),transition: Transition.zoom,duration: const Duration(milliseconds: 600));
       } else {
         Get.offAll(() => VerifyEmailScreen(
               email: _auth.currentUser?.email,
-            ),transition: Transition.zoom,duration: Duration(seconds: 1));
+            ),transition: Transition.zoom,duration: const Duration(milliseconds: 600));
       }
+
     } else {
       deviceStorage.writeIfNull('isFirstTime', true);
       deviceStorage.read('isFirstTime') != true
-          ? Get.offAll(() => const LoginScreen(),transition: Transition.zoom,duration: Duration(seconds: 1))
-          : Get.offAll(() => const OnBoardingScreen(),transition: Transition.zoom,duration: Duration(seconds: 1));
+          ? Get.offAll(() => const LoginScreen(),transition: Transition.zoom,duration: const Duration(milliseconds: 600))
+          : Get.offAll(() => const OnBoardingScreen(),transition: Transition.zoom,duration: const Duration(milliseconds: 600));
     }
   }
 
   ///[EmailAuthentication ]-SignIn
-  Future<UserCredential> loginWithEmailAndPassword(
-      String email, String password) async {
+  Future<UserCredential> loginWithEmailAndPassword(String email, String password) async {
     try {
       return await _auth.signInWithEmailAndPassword(
           email: email, password: password);
@@ -155,10 +155,10 @@ class AuthenticationRepository extends GetxController {
       FullScreenLoader.openLoadingDialog('Please wait...Logging out...',
           "assets/images/animations/141594-animation-of-docer.json");
       Future.delayed(
-        Duration(seconds: 4),
+        const Duration(seconds: 4),
         () async {
           await FirebaseAuth.instance.signOut();
-          Get.offAll(() => const LoginScreen(),transition: Transition.zoom,duration: Duration(seconds: 1));
+          Get.offAll(() => const LoginScreen(),transition: Transition.zoom,duration:  const Duration(milliseconds: 600));
         },
       );
     } on FirebaseAuthException catch (e) {
@@ -171,6 +171,42 @@ class AuthenticationRepository extends GetxController {
       throw TPlatformException(e.code).message;
     } catch (e) {
       throw 'Something went wrong.';
+    }
+  }
+  //reAuthenticate User with email and password
+  Future<void>reAuthenticateWithEmailAndPassword(String email,String password)async{
+    try{
+      //creating credential
+      AuthCredential credential=EmailAuthProvider.credential(email: email, password: password);
+      //reAuthenticate
+      await _auth.currentUser!.reauthenticateWithCredential(credential);
+    }on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (e) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
+  //Delete account
+  Future<void>deleteAccount()async{
+    try{
+      await UserRepository.instance.deleteUserRecord(_auth.currentUser!.uid);
+      await _auth.currentUser?.delete();
+    }on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (e) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong';
     }
   }
 }
