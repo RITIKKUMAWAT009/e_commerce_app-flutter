@@ -7,7 +7,6 @@ import 'package:e_commerce_app/utils/constants/colors.dart';
 import 'package:e_commerce_app/utils/constants/image_strings.dart';
 import 'package:e_commerce_app/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:iconsax/iconsax.dart';
 
 import 'widgets/home_category.dart';

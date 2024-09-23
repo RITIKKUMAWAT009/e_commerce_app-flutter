@@ -32,7 +32,7 @@ class VerifyEmailController extends GetxController {
 
 //Timer to automatically redirect on email verification
   setTimerForAutoRedirect() {
-    Timer.periodic(Duration(seconds: 1), (timer) async {
+    Timer.periodic(const Duration(seconds: 1), (timer) async {
       await FirebaseAuth.instance.currentUser?.reload();
       final user = FirebaseAuth.instance.currentUser;
       if (user?.emailVerified ?? false) {
@@ -41,7 +41,7 @@ class VerifyEmailController extends GetxController {
             onPressed: () => AuthenticationRepository.instance.screenRedirect(),
             image: 'assets/images/animations/72462-check-register.json',
             title: TTexts.yourAccountCreatedTitle,
-            subTitle: TTexts.yourAccountCreatedSubTitle),transition: Transition.zoom,duration: Duration(seconds: 1));
+            subTitle: TTexts.yourAccountCreatedSubTitle),transition: Transition.zoom,duration: const Duration(milliseconds: 1));
       }
     });
   }
@@ -55,7 +55,7 @@ class VerifyEmailController extends GetxController {
           onPressed: AuthenticationRepository.instance.screenRedirect(),
           image: 'assets/images/animations/72462-check-register.json',
           title: TTexts.yourAccountCreatedTitle,
-          subTitle: TTexts.yourAccountCreatedSubTitle),transition: Transition.zoom,duration: Duration(seconds: 1));
+          subTitle: TTexts.yourAccountCreatedSubTitle),transition: Transition.zoom,duration: const Duration(milliseconds: 600));
     }
   }
 }

@@ -19,7 +19,7 @@ class NetworkManager extends GetxController{
     _connectivitySubscription=_connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
   }
 
-  Future<void> _updateConnectionStatus(ConnectivityResult result)async{
+ void _updateConnectionStatus(ConnectivityResult result){
   _connectivityStatus.value=result;
   if(_connectivityStatus.value==ConnectivityResult.none){
   Loaders.warningSnackBar(title: 'No Internet Connection');

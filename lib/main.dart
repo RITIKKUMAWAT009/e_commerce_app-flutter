@@ -18,13 +18,10 @@ Future<void> main() async {
   //TODO: await native splash
 FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   //Initialize Firebase
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform).then((FirebaseApp value) => Get.put(AuthenticationRepository()));;
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
+      .then((FirebaseApp value) => Get.put(AuthenticationRepository()));
 
   //TODO: Initialize Authentication
 
   runApp(const MyApp());
 }
-
-///android   1:787682423724:android:1ac845cde753ff313f4009
-// ios       1:787682423724:ios:299b172b166ca2c93f4009
-// macos     1:787682423724:ios:299b172b166ca2c93f4009

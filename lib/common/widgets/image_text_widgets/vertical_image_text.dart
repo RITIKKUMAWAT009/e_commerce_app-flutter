@@ -16,6 +16,7 @@ class VerticalImageText extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
             margin: EdgeInsets.symmetric(horizontal: TSize.sm),
@@ -26,12 +27,10 @@ class VerticalImageText extends StatelessWidget {
                 color: backgroundColor != null? (THelperFunction.isDarkMode(context) ?TColors.black :TColors.white):Colors.transparent,
                 borderRadius:
                 BorderRadius.circular(100)),
-            child: Center(
-              child: Image(
-                image: AssetImage(image),
-                fit: BoxFit.cover,
-                color: (THelperFunction.isDarkMode(context) ?TColors.white :TColors.black),
-              ),
+            child: Image(height: 56,width: 56,
+              image: NetworkImage(image),
+              fit: BoxFit.cover,
+              // color: (THelperFunction.isDarkMode(context) ?TColors.white :TColors.black),
             ),
           ),
           const SizedBox(

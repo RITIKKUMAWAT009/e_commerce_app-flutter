@@ -61,7 +61,7 @@ final String email;
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: ()=>Get.offAll(const LoginScreen(),transition: Transition.zoom,duration: Duration(seconds: 1)),
+                  onPressed: ()=>Get.offAll(const LoginScreen(),transition: Transition.zoom,duration: Duration(milliseconds: 600)),
                   child: const Text("Done"),
                 ),
               ),
