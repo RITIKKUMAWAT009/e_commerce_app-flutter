@@ -38,10 +38,10 @@ class NavigationExample extends StatelessWidget {
             Colors.blue.shade100,
             Colors.blue.shade200,
             Colors.blue.shade400,
-            Colors.blue.shade600,
-            TColors.primary,
+            Colors.blue.shade700,
+            Colors.blue.shade900,
           ]),
-          color: Colors.blueAccent.shade100,
+          color: Colors.blue.shade500,
           elevation: 10,
           textAlign: TextAlign.center,
           onTap: (value) => controller.selectedIndex.value = value,
@@ -91,7 +91,7 @@ class NavigationController extends GetxController {
   final screen = [
     const HomeScreen(),
     const StoreScreen(),
-    const FavouriteScreen(),
+     FavouriteScreen(),
     const SettingsScreen()
   ];
 }

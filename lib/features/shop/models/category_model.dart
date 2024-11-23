@@ -1,4 +1,8 @@
+import 'dart:ffi';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:get/get.dart';
+import 'package:get/get_rx/get_rx.dart';
 
 class CategoryModel {
   String id;
@@ -6,17 +10,18 @@ class CategoryModel {
   String parentId;
   String imageUrl;
   bool isFeatured;
-
+bool isFavorite=false;
   CategoryModel(
       {required this.id,
       required this.name,
       required this.imageUrl,
       required this.isFeatured,
+      this.isFavorite=false,
       this.parentId = ''});
 
   //empty
   static CategoryModel empty() =>
-      CategoryModel(id: '', name: '', imageUrl: '', isFeatured: false);
+      CategoryModel(id: '', name: '', imageUrl: '', isFeatured: false,isFavorite: false);
 
   //from json to model
   factory CategoryModel.fromDocumentSnapshot(
@@ -28,6 +33,7 @@ class CategoryModel {
           name: data['name']??'',
           imageUrl: data['imageUrl']??'',
           isFeatured: data['isFeatured']??false,
+          isFavorite: data['isFavorite']??false
       );
     } else {
       return CategoryModel.empty();
@@ -41,6 +47,7 @@ class CategoryModel {
       'name': name,
       'imageUrl': imageUrl,
       'isFeatured': isFeatured,
+      "isFavorite":isFavorite
     };
   }
 }

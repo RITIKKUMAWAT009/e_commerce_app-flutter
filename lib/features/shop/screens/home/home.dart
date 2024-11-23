@@ -1,12 +1,16 @@
 import 'package:e_commerce_app/common/widgets/custom_shape/container/search_container.dart';
+import 'package:e_commerce_app/common/widgets/effects/product_shimmer.dart';
 import 'package:e_commerce_app/common/widgets/products/product_card/product_card_vertical.dart';
 import 'package:e_commerce_app/common/widgets/text_widget/section_heading.dart';
+import 'package:e_commerce_app/features/shop/controllers/home_controller.dart';
 import 'package:e_commerce_app/features/shop/screens/home/widgets/hom_appbar.dart';
 import 'package:e_commerce_app/features/shop/screens/home/widgets/primary_header_container.dart';
 import 'package:e_commerce_app/utils/constants/colors.dart';
 import 'package:e_commerce_app/utils/constants/image_strings.dart';
 import 'package:e_commerce_app/utils/constants/sizes.dart';
+import 'package:e_commerce_app/utils/helper/helper_function.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 import 'widgets/home_category.dart';
@@ -17,6 +21,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _homeController=Get.put(HomeController());
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -79,14 +84,19 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(
                     height: TSize.spaceBtwSections,
                   ),
-                  GridView.builder(
-                    itemCount: 18,
-                      physics:const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,crossAxisSpacing: TSize.gridViewSpacing,mainAxisSpacing: TSize.gridViewSpacing,mainAxisExtent: 288),
-                      itemBuilder:(_,index)=>const ProductVerticalCard(),
-                  ),
+                 
+                     GetBuilder<HomeController>(
+                       builder: (controller) {
+                         return GridView.builder(
+                          itemCount:_homeController.isLoadingProductData.value?10: _homeController.productData.length ,
+                            physics:const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,crossAxisSpacing: TSize.gridViewSpacing,mainAxisSpacing: TSize.gridViewSpacing,mainAxisExtent: 288),
+                            itemBuilder:(_,index)=>_homeController.isLoadingProductData.value==true?buildShimmer(context,THelperFunction.isDarkMode(context)) :  ProductVerticalCard(productData:_homeController.productData[index]), 
+                                           );
+                       }
+                     ),
 
                 ],
               ),

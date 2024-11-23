@@ -8,7 +8,7 @@ class FirebaseStorageService extends GetxController{
 
   final _firebaseStorage=FirebaseStorage.instance;
 
-  //upload local assets from IDE
+//upload local assets from IDE
 //Return a Unit8List containing image data
 Future<Uint8List>getImageDataFromAssets(String path)async{
   try{

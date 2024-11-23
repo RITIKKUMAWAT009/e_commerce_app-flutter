@@ -2,6 +2,7 @@ import 'package:e_commerce_app/common/images/circular_image.dart';
 import 'package:e_commerce_app/common/widgets/text_widget/brand_title_text_with_verification_icon.dart';
 import 'package:e_commerce_app/common/widgets/text_widget/product_price_text.dart';
 import 'package:e_commerce_app/common/widgets/text_widget/product_title_text.dart';
+import 'package:e_commerce_app/features/shop/models/category_model.dart';
 import 'package:e_commerce_app/utils/constants/enums.dart';
 import 'package:e_commerce_app/utils/constants/image_strings.dart';
 import 'package:e_commerce_app/utils/helper/helper_function.dart';
@@ -11,7 +12,9 @@ import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/sizes.dart';
 
 class ProductMetaData extends StatelessWidget {
-  const ProductMetaData({super.key});
+  const ProductMetaData({super.key, this.productDetail});
+  final CategoryModel? productDetail;
+
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +64,7 @@ class ProductMetaData extends StatelessWidget {
         ),
 
         ///Title
-        const ProductTitleText(title: 'Green Nike Sports Shirt'),
+         ProductTitleText(title: productDetail!.name),
         const SizedBox(
           height: TSize.spaceBtwItems / 1.5,
         ),
@@ -88,8 +91,8 @@ class ProductMetaData extends StatelessWidget {
             CircularImage(image: TImages.shoeIcon,
             width: 32,height: 32,
             overlayColor: darkMode?TColors.white:TColors.black,),
-            const BrandTitleWithVerifiedIcon(
-              title: 'Nike',
+             BrandTitleWithVerifiedIcon(
+              title: productDetail!.name,
               brandTextSize: TextSizes.medium,
             ),
           ],
