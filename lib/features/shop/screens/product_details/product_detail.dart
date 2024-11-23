@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/common/widgets/text_widget/section_heading.dart';
+import 'package:e_commerce_app/features/shop/models/category_model.dart';
 import 'package:e_commerce_app/features/shop/screens/product_details/widgets/bottom_add_to_cart_widget.dart';
 import 'package:e_commerce_app/features/shop/screens/product_details/widgets/product_attributes.dart';
 import 'package:e_commerce_app/features/shop/screens/product_details/widgets/product_image_slider.dart';
@@ -13,7 +14,8 @@ import 'package:iconsax/iconsax.dart';
 import 'package:readmore/readmore.dart';
 
 class ProductDetails extends StatelessWidget {
-  const ProductDetails({super.key});
+  const ProductDetails({super.key,  this.productDetail});
+  final CategoryModel? productDetail;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class ProductDetails extends StatelessWidget {
         child: Column(
           children: [
             //product image slider
-            const ProductImageSlider(),
+             ProductImageSlider(productDetail: productDetail,),
             //product details
             Padding(
               padding: const EdgeInsets.all(TSize.defaultSpace),
@@ -34,10 +36,10 @@ class ProductDetails extends StatelessWidget {
                   const RatingAndShare(),
 
                   /// prince,title,stock,brand
-                  const ProductMetaData(),
+                   ProductMetaData(productDetail: productDetail,),
 
                   /// Attribute
-                  const ProductAttributes(),
+                   ProductAttributes(),
                   const SizedBox(
                     height: TSize.spaceBtwSections,
                   ),
@@ -55,9 +57,8 @@ class ProductDetails extends StatelessWidget {
                       showActionButton: false,
                       headingText: 'Description',
                       buttonText: ""),
-                  const ReadMoreText(
-                    'This is a product description for blue Nike Shoes. There are more things that can be added but i am vsfvflmmlsmfv;x;snsf;xn ;jfnv;kjfdn;knvjksnfx;kjn;jsnsvsrosl;nmdkjvnsj;k s s;v nfjl; onv;jl ',
-                    trimLines: 2,
+                   ReadMoreText(
+                    productDetail!.name,  trimLines: 2,
                     trimMode: TrimMode.Line,
                     trimCollapsedText: 'Show more',
                     trimExpandedText: 'Less',

@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/features/shop/models/category_model.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../../../../common/images/rounded_image.dart';
@@ -11,9 +12,9 @@ import '../../../../../utils/helper/helper_function.dart';
 
 class ProductImageSlider extends StatelessWidget {
   const ProductImageSlider({
-    super.key,
+    super.key,  this.productDetail,
   });
-
+final CategoryModel? productDetail;
   @override
   Widget build(BuildContext context) {
     final isDarkMode = THelperFunction.isDarkMode(context);
@@ -23,14 +24,14 @@ class ProductImageSlider extends StatelessWidget {
         child: Stack(
           children: [
             //main large image
-            const SizedBox(
+             SizedBox(
               height: 400,
               child: Padding(
                 padding:
                 EdgeInsets.all(TSize.productImageRadius * 2),
                 child: Center(
                   child: Image(
-                    image: AssetImage(TImages.productImage1),
+                    image: NetworkImage(productDetail!.imageUrl),
                   ),
                 ),
               ),
@@ -42,9 +43,10 @@ class ProductImageSlider extends StatelessWidget {
               child: SizedBox(
                 height: 80,
                 child: ListView.separated(scrollDirection: Axis.horizontal,shrinkWrap: true,
-                  separatorBuilder: (_,__)=>const SizedBox(width: TSize.spaceBtwItems-10,), itemCount: 6,itemBuilder: (_,index)=> RoundedImage(
-                    imageUrl: TImages.productImage1,
+                  separatorBuilder: (_,__)=>const SizedBox(width: TSize.spaceBtwItems-10,), itemCount: 1,itemBuilder: (_,index)=> RoundedImage(
+                    imageUrl: productDetail!.imageUrl,
                     width: 80,
+                    isNetworkImage: true,
                     padding: const EdgeInsets.all(TSize.sm),
                     border: Border.all(color: TColors.primary),
                     borderRadius: 10,applyImageRadius: true,

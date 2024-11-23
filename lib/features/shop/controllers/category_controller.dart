@@ -27,7 +27,7 @@ class CategoryController extends GetxController {
       //show loader while loading
       isLoading.value = true;
       // FullScreenLoader.openLoadingDialog('text', '');
-      List<CategoryModel> categories = await _categoryRepo.getAllCategories();
+      List<CategoryModel> categories = await _categoryRepo.getAllCategories(collectionName: "Categories");
 print('after calling in ccont.');
       //update category list
       allCategoryList.assignAll(categories);
@@ -49,7 +49,7 @@ print('after calling in ccont.');
 //upload data to firestore
 Future<void>uploadData()async{
     try{
-      await _categoryRepo.uploadDummyData(DummyData.categories);
+      await _categoryRepo.uploadDummyData(DummyData.products);
       Loaders.successSnackBar(title: 'Data Uploaded Successfully');
     }catch(e){
       Loaders.errorSnackBar(title: 'Oh Snap',message: e);

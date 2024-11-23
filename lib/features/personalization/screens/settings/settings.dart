@@ -10,6 +10,7 @@ import 'package:e_commerce_app/utils/constants/sizes.dart';
 import 'package:e_commerce_app/utils/helper/helper_function.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../../common/widgets/listtiles/user_profile_tile.dart';
@@ -123,7 +124,7 @@ class SettingsScreen extends StatelessWidget {
                     icon: Iconsax.location,
                     title: "Geolocation",
                     subTitle: "Set recommendation based on location",
-                    trailing: Switch(
+                    trailing: Switch(activeTrackColor: TColors.primary, 
                       value: true,
                       onChanged: (value) {},
                     ),

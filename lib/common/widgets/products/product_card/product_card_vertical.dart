@@ -2,26 +2,35 @@ import 'package:e_commerce_app/common/images/rounded_image.dart';
 import 'package:e_commerce_app/common/widgets/custom_shape/container/circular_container.dart';
 import 'package:e_commerce_app/common/widgets/icon/circular_icon.dart';
 import 'package:e_commerce_app/common/widgets/text_widget/product_title_text.dart';
+import 'package:e_commerce_app/features/shop/controllers/home_controller.dart';
+import 'package:e_commerce_app/features/shop/models/category_model.dart';
 import 'package:e_commerce_app/features/shop/screens/product_details/product_detail.dart';
 import 'package:e_commerce_app/utils/constants/colors.dart';
 import 'package:e_commerce_app/utils/constants/image_strings.dart';
 import 'package:e_commerce_app/utils/constants/sizes.dart';
 import 'package:e_commerce_app/utils/helper/helper_function.dart';
+import 'package:e_commerce_app/utils/logging/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../styles/shadow.dart';
 import '../../text_widget/brand_title_text_with_verification_icon.dart';
 
 class ProductVerticalCard extends StatelessWidget {
-  const ProductVerticalCard({super.key});
-
+   ProductVerticalCard({super.key, this.fromWishlist=false, this.productData});
+  final CategoryModel? productData;
+  final bool fromWishlist;
+HomeController? _homeController;
   @override
   Widget build(BuildContext context) {
+    if(Get.isRegistered<HomeController>()){_homeController=Get.find<HomeController>();}else{
+      _homeController=Get.put(HomeController());
+    }
     final bool isDarkMode = THelperFunction.isDarkMode(context);
-    return GestureDetector(
-      onTap: ()=>Get.to(()=>ProductDetails(),transition: Transition.zoom,duration: Duration(milliseconds: 600)),
+    return  GestureDetector(
+      onTap: ()=>Get.to(()=>ProductDetails(productDetail:productData),transition: Transition.zoom,duration: Duration(milliseconds: 600)),
       child: Container(
         width: 180,
         decoration: BoxDecoration(
@@ -45,8 +54,9 @@ class ProductVerticalCard extends StatelessWidget {
                   ///thumbnail image
                   RoundedImage(
                     backgroundColor: isDarkMode ? TColors.dark : TColors.light,
-                    imageUrl: TImages.productImage1,
+                    imageUrl: productData!.imageUrl,
                     applyImageRadius: true,
+                    isNetworkImage: true,
                   ),
                   ///sale tag
                   Positioned(
@@ -72,21 +82,37 @@ class ProductVerticalCard extends StatelessWidget {
                     child: CircularIcon(
                         width: 40,
                         height: 40,
-                        onPressed: () {},
+                        onPressed: () {
+                          if (fromWishlist) {
+                            RLoggerHelper.debug("here for wishlist");
+                            productData!.isFavorite=false;
+                         _homeController?.deleteFavorite(productData!);
+                          _homeController!.getProductData();
+                          }else{
+
+                       if(productData!.isFavorite){
+                         productData!.isFavorite=false;
+                         _homeController?.deleteFavorite(productData!);
+                       }else{
+                          productData!.isFavorite=true;
+                          _homeController?.saveFavorite(productData!);
+                       }
+                          }
+                        },
                         icon: Iconsax.heart5,
-                        iconColor: isDarkMode?Colors.red:Colors.red,
+                        iconColor: productData!.isFavorite?Colors.red:Colors.grey,
                         backgroundColor: false),
                   )
                 ],
               ),
             ),
-             const Padding(
+              Padding(
               padding: EdgeInsets.only(left: TSize.sm),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ProductTitleText(
-                    title: "blue Nike shoes",
+                    title: productData!.name,
                   ),
                   SizedBox(
                     height: TSize.spaceBtwItems / 2,
@@ -117,4 +143,3 @@ class ProductVerticalCard extends StatelessWidget {
     );
   }
 }
-
